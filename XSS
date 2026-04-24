@@ -1,0 +1,59 @@
+# 🚨 Stored XSS – User Comment Exploit
+
+## 🔍 Vulnerability
+
+**Stored Cross-Site Scripting (XSS)**
+
+---
+
+## 🧠 Summary
+
+The application allows users to submit comments, but **fails to sanitize or encode input**.
+This enables an attacker to inject malicious JavaScript, which gets stored and executed whenever other users view the page.
+
+---
+
+## 💥 Impact
+
+* Execute JavaScript in victim’s browser
+* Session hijacking
+* Perform actions on behalf of users
+
+---
+
+## 🛠️ Exploit Steps
+
+1. Log in to the application
+2. Open any blog post
+3. Go to the comment section
+4. Enter payload:
+
+```html
+<script>alert(1)</script>
+```
+
+5. Submit the comment
+
+---
+
+## ✅ Result
+
+* Payload is stored on the server
+* Script executes when the page is viewed
+* **Stored XSS successfully triggered**
+
+---
+
+## 🛡️ Fix
+
+* Encode output before rendering (HTML encoding)
+* Sanitize user input
+* Use security headers like CSP
+
+---
+
+## 🎯 Key Insight
+
+> User input should never be trusted — always sanitize and encode before rendering.
+
+---
